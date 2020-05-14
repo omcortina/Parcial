@@ -75,7 +75,7 @@ public class ListarCancionesService extends AsyncTask<Void,Void,String> {
                 BD admin = new BD(context, Config.database_name, null, 1);
                 SQLiteDatabase db = admin.getWritableDatabase();
 
-                db.execSQL("DELETE FROM Playlist");
+                db.execSQL("DELETE FROM Playlist where album= 'sin definir'");
                 db.close();
 
                 json_canciones = new JSONObject(json);
@@ -89,6 +89,7 @@ public class ListarCancionesService extends AsyncTask<Void,Void,String> {
                     playlist.Nombre = r.getString("name");
                     JSONObject jo_artista = r.getJSONObject("artist");
                     playlist.Artista = jo_artista.getString("name");
+                    playlist.Album = "sin definir";
                     playlist.Save(this.context);
                 }
                 this.error = false;

@@ -15,6 +15,7 @@ public class Playlist {
     public int Id;
     public String Nombre;
     public String Artista;
+    public String Album;
 
     public Playlist() {
     }
@@ -43,14 +44,21 @@ public class Playlist {
         Artista = artista;
     }
 
+    public String getAlbum() {
+        return Album;
+    }
+
+    public void setAlbum(String album) {
+        Album = album;
+    }
 
     public void Save(Context context){
         BD admin = new BD(context, Config.database_name, null, 1);
         SQLiteDatabase db = admin.getWritableDatabase();
-
         ContentValues registro = new ContentValues();
         registro.put("nombre_cancion", this.Nombre);
         registro.put("artista", this.Artista);
+        registro.put("album", this.Album);
         db.insert("Playlist", null, registro);
         db.close();
     }
@@ -66,6 +74,7 @@ public class Playlist {
             this.Id = Integer.parseInt(cursor.getString(0));
             this.Nombre = cursor.getString(1);
             this.Artista = cursor.getString(2);
+            this.Album = cursor.getString(3);
             return this;
         }
         db.close();
@@ -86,6 +95,7 @@ public class Playlist {
                 playlist.Id = Integer.parseInt(cursor.getString(0));
                 playlist.Nombre = cursor.getString(1);
                 playlist.Artista = cursor.getString(2);
+                playlist.Album = cursor.getString(3);
                 lista.add(playlist);
             }while(cursor.moveToNext());
             db.close();

@@ -16,7 +16,8 @@ public class BD extends SQLiteOpenHelper {
         db.execSQL("create table Playlist(" +
                 "id_playlist integer primary key autoincrement," +
                 "nombre_cancion text," +
-                "artista text" +
+                "artista text," +
+                "album text" +
                 ")");
     }
 

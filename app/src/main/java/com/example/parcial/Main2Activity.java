@@ -45,9 +45,10 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View v) {
                 String nombre_cancion = txt_nombre_cancion.getText().toString();
                 String artista = txt_artista_cancion.getText().toString();
-                Playlist playlist =new Playlist();
+                Playlist playlist = new Playlist();
                 playlist.Nombre = nombre_cancion;
                 playlist.Artista = artista;
+                playlist.Album = "";
                 playlist.Save(Main2Activity.this);
                 ListarCancionesService service = new ListarCancionesService(Main2Activity.this);
                 service.execute();
